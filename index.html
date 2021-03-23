@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        body {
+            background-color: rgb(33, 33, 33);
+        }
+        form {
+            margin-top: 20px;
+        }
+        label{
+            color: white;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+        button{
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<form action="" id="register">
+    <label for="full_name">ФИО</label><input type="text" id="full_name" required>
+    <label for="nickname">Ник</label><input type="text" id="nickname">
+    <label for="checkBox">Да?</label><input type="checkbox" id="checkBox" required>
+    <button id="btn">Отправить</button>
+</form>
+
+<script>
+    'use strict'
+
+    console.log('Задание 1');
+    {
+        let elements = {
+            a: 6,
+            b: 2,
+            read() {
+                return this.a + ', ' + this.b;
+            },
+            sum() {
+                return this.a + this.b;
+            },
+            mul() {
+                return this.a * this.b;
+            },
+            minus() {
+                return this.a - this.b;
+            },
+            split() {
+                return this.a / this.b;
+            },
+        }
+
+        console.log('Числа ' + elements.read());
+        console.log('Сумма ' + elements.sum());
+        console.log('Умножение ' + elements.mul());
+        console.log('Вычитание ' + elements.minus());
+        console.log('Деление ' + elements.split());
+    }
+
+    console.log('Задание 2');
+    {
+        let ladder = {
+            step: 0,
+            up() {
+                this.step++;
+                return this;
+            },
+            down() {
+                this.step--;
+                return this;
+            },
+            showStep: function () { // показывает текущую ступеньку
+                console.log('Текущий шаг ' + this.step);
+                return this;
+            }
+        };
+
+        ladder.up().up().up().up().down().showStep(); // 3
+    }
+
+    console.log('Задание 3');
+    {
+        function Calculator() {
+            this.a = 8;
+            this.b = 2;
+
+            this.read = function () {
+                return this.a + ', ' + this.b;
+            };
+            this.sum = function () {
+                return this.a + this.b;
+            };
+            this.mul = function () {
+                return this.a * this.b;
+            };
+            this.minus = function () {
+                return this.a - this.b;
+            };
+            this.split = function () {
+                return this.a / this.b;
+            };
+        }
+
+        let calculator = new Calculator();
+
+        console.log('Числа ' + calculator.read());
+        console.log('Сумма ' + calculator.sum());
+        console.log('Умножение ' + calculator.mul());
+        console.log('Вычитание ' + calculator.minus());
+        console.log('Деление ' + calculator.split());
+    }
+
+    console.log('Задание 4');
+    console.log('Заполните поля');
+    {
+        let trueFalse;
+        function Validator(full_name, check) {
+            this.full_name = full_name;
+            this.check = check;
+            this.validChecking = function () {
+                let fullName = document.getElementById('full_name');
+                let checkBox = document.getElementById('checkBox')
+                if (!fullName.checkValidity() || !checkBox.checkValidity()) {
+                    trueFalse = false;
+                }
+                else {
+                    trueFalse = true;
+                }
+                alert(trueFalse);
+            }
+        }
+        let valid = new Validator();
+
+        document.getElementById('btn').addEventListener('click', valid.validChecking);
+
+    }
+</script>
+</body>
+</html>
